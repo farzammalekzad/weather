@@ -1,6 +1,6 @@
 {
 	"appId": "ir.malekzad.mohammad.weather",
-	"appName": "weatherMate",
+	"appName": "weather",
 	"webDir": "www",
 	"bundledWebRuntime": false
 }
