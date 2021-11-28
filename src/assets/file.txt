@@ -1,0 +1,14 @@
+weather:
+base: "stations"
+clouds: {all: 28}
+cod: 200
+coord: {lon: 51.3761, lat: 35.7338}
+dt: 1638123147
+id: 112931
+main: {temp: 10.01, feels_like: 8.37, temp_min: 10.01, temp_max: 10.01, pressure: 1020, …}
+name: "Tehran"
+sys: {type: 1, id: 7464, country: 'IR', sunrise: 1638069797, sunset: 1638105720}
+timezone: 12600
+visibility: 4000
+weather: [{…}]
+wind: {speed: 0, deg: 0}

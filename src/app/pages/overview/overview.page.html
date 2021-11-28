@@ -1,9 +1,50 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>overview</ion-title>
+  <ion-toolbar color="secondary">
+    <ion-title>پیش بینی آب و هوا</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-slides #slides>
+    <ion-slide *ngFor="let place of entries">
+      <div *ngIf="place.weather">
+        <h3 class="ion-text-center">{{place.weather.name}}</h3>
+        <p class="ion-text-center ion-text-capitalize">{{place.weather.weather[0]?.description}}</p>
+        <ion-row class="ion-justify-content-center">
+          <ion-col size="4">
+            <img [src]="getWeatherIcon(place.weather.weather[0]?.icon)">
+          </ion-col>
+        </ion-row>
+        <h2 class="ion-text-center ion-tappable" (click)="changeUnit()">{{place.weather.main.temp.toFixed()}} {{changeUnitString()}}</h2>
+        <ion-list inset="true" lines="inset">
+          <ion-item>
+            <ion-icon slot="start" name="sunny"></ion-icon>
+            <ion-label>طلوع خورشید</ion-label>
+            <p slot="end">{{place.weather.sys.sunrise * 1000 | date: 'HH:mm'}}</p>
+          </ion-item>
+          <ion-item>
+            <ion-icon slot="start" name="moon"></ion-icon>
+            <ion-label>غروب خورشید</ion-label>
+            <p slot="end">{{place.weather.sys.sunset * 1000 | date: 'HH:mm'}}</p>
+          </ion-item>
+          <ion-item>
+            <ion-icon slot="start" name="thermometer"></ion-icon>
+            <ion-label>دمای محسوس</ion-label>
+            <p slot="end">{{place.weather.main.feels_like}}</p>
+          </ion-item>
+          <ion-item>
+            <ion-icon slot="start" name="water"></ion-icon>
+            <ion-label>رطوبت</ion-label>
+            <p slot="end">{{place.weather.main.humidity}}</p>
+          </ion-item>
+          <ion-item>
+            <ion-icon slot="start" name="flag"></ion-icon>
+            <ion-label>سرعت باد</ion-label>
+            <p slot="end">{{place.weather.wind.speed}}{{this.speedString}}</p>
+          </ion-item>
+        </ion-list>
+      </div>
+    </ion-slide>
+  </ion-slides>
 
 </ion-content>

@@ -18,4 +18,16 @@ export class WeatherService {
       return this.http.get(`https://api.openweathermap.org/data/2.5/weather?q=${data.data}&appid=${this.APIKEY}&units=${this.units}`);
     }
   }
+
+  changeUnit() {
+    return this.units = this.units === 'metric' ? 'imperial' : 'metric';
+  }
+
+  getWeatherIcon(icon) {
+    return `http://openweathermap.org/img/w/${icon}.png`;
+  }
+
+  getUnits() {
+    return this.units;
+  }
 }
