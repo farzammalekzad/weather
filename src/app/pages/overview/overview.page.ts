@@ -12,6 +12,11 @@ export class OverviewPage implements OnInit {
   units = this.weatherService.getUnits();
   unitString = 'درجه سانتی‌گراد';
   speedString = 'کیلومتر بر ساعت';
+  configSlides = {
+    freeMode: true,
+    spaceBetween: 5,
+    slidesPerView: 3.3
+  }
 
   constructor(private weatherService: WeatherService) {
     this.currentPosition();
@@ -29,13 +34,23 @@ export class OverviewPage implements OnInit {
     this.getWeather(0).subscribe((res) => {
       this.entries[0].weather = res;
     }, error => {
-      console.log(error);
+      console.log('weather error: ', error);
     });
+    this.getForecast(0).subscribe((forecast) => {
+      this.entries[0].forecast = forecast;
+    }, error => {
+      console.log('forecast error: ', error);
+    })
   }
 
    getWeather(index) {
     const data = this.entries[index];
     return this.weatherService.getWeather(data);
+  }
+
+  getForecast(index) {
+    const data = this.entries[index];
+    return this.weatherService.getForecast(data);
   }
 
   getWeatherIcon(icon) {

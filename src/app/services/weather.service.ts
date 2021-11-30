@@ -19,6 +19,14 @@ export class WeatherService {
     }
   }
 
+  getForecast(data) {
+    if (data.type === 'geo') {
+      return this.http.get(`https://api.openweathermap.org/data/2.5/forecast?lat=${data.data.latitude}&lon=${data.data.longitude}&appid=${this.APIKEY}&units=${this.units}`);
+    } else {
+      return this.http.get(`https://api.openweathermap.org/data/2.5/forecast?q=${data.data}&appid=${this.APIKEY}&units=${this.units}`);
+    }
+  }
+
   changeUnit() {
     return this.units = this.units === 'metric' ? 'imperial' : 'metric';
   }

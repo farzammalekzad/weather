@@ -44,6 +44,14 @@
           </ion-item>
         </ion-list>
       </div>
+      <ion-slides *ngIf="place.forecast" [options]='configSlides' dir="ltr">
+        <ion-slide *ngFor="let fc of place.forecast?.list" class="forecast">
+          {{fc.dt*1000 | date: 'MM/dd'}}
+          {{fc.dt*1000 | date: 'hh a'}}
+          <img [src]="getWeatherIcon(fc.weather[0].icon)">
+         {{fc.main.temp.toFixed()}} °C
+        </ion-slide>
+      </ion-slides>
     </ion-slide>
   </ion-slides>
 
