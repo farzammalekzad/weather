@@ -31,12 +31,12 @@ export class OverviewPage implements OnInit {
     console.log('data: ', data);
     this.entries.push({type: 'geo', data: data.coords, class: 'cold'});
     console.log(this.entries);
-    this.getWeather(0).subscribe((res) => {
+    await this.getWeather(0).subscribe((res) => {
       this.entries[0].weather = res;
     }, error => {
       console.log('weather error: ', error);
     });
-    this.getForecast(0).subscribe((forecast) => {
+    await this.getForecast(0).subscribe((forecast) => {
       this.entries[0].forecast = forecast;
     }, error => {
       console.log('forecast error: ', error);
